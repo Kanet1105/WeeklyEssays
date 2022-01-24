@@ -67,5 +67,6 @@ LazyLinear 레이어의 weight, bias 값들은 입력값이 없는 상태에서�
 
 > nn.LazyLinear
 > https://pytorch.org/docs/stable/generated/torch.nn.modules.lazy.LazyModuleMixin.html
+> 
 > nn.Linear
 > https://pytorch.org/docs/stable/generated/torch.nn.Linear.html#torch.nn.Linear
