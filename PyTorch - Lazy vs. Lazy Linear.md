@@ -1,9 +1,9 @@
 # Pytorch - Linear vs. Lazy Linear
 
 Dependencies required to replicate the results for code written in the post :
-Python 3.9.6 (64 bit)
-NumPy 1.22.1
-PyTorch 1.10.1
+- Python 3.9.6 (64 bit)
+- NumPy 1.22.1
+- PyTorch 1.10.1
 Note : All references are cited within relevant paragraphs to make it more readily accessible for viewers.
 
 ## Linear vs. Lazy Linear
