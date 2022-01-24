@@ -9,8 +9,7 @@ Linear 모듈의 경우 input 과 output 의 사이즈를 미리 알고 있는 �
     from torch import nn  
       
       
-    X = torch.Tensor([[1, 2], 
-		      [3, 4]])  
+    X = torch.Tensor([[1, 2], [3, 4]])  
       
     lazy_linear = nn.LazyLinear(10)  
     print(lazy_linear.weight)  
@@ -54,8 +53,7 @@ LazyLinear 레이어의 weight, bias 값들은 입력값이 없는 상태에서�
 한번 초기화된 LazyLinear 레이어는 고정된 weight size 를 가지며 따라서 다음 코드는 런타임 에러를 발생시킨다.
 
 
-    Y = torch.Tensor([[1, 2, 3], 
-		      [4, 5, 6]])  
+    Y = torch.Tensor([[1, 2, 3], [4, 5, 6]])  
       
     output2 = lazy_linear(Y)  
     print(output2)
