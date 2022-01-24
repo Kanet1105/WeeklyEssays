@@ -56,7 +56,7 @@ Linear 모듈의 경우 input 과 output 의 사이즈를 미리 알고 있는 �
     tensor([-0.5861,  0.0210,  0.3833,  0.4546, -0.2333, -0.1670,  0.0682, -0.4299,
              0.5077,  0.4966], requires_grad=True) torch.Size([10])
 
-LazyLinear 레이어의 weight, bias 값들은 입력값이 없는 상태에서는 UninitializedParameter 오브젝트로 존재하다가 입력 tensor 의 사이즈에 맞춰서 weight 과 bias 값들을 초기화한다. 위 코드에서 입력 tensor 의 크기는 (2, 2) 이고 LazyLinear 는 output feature size 에 대해 하나의 정수 (10) 값만 가지고 있다가 입력 tensor 에 맞춰 (2, 10) 크기의 weight 을 동적으로 초기화한다.
+LazyLinear 레이어의 weight, bias 값들은 입력값이 없는 상태에서는 UninitializedParameter 오브젝트로 존재하다가 입력 tensor 의 사이즈에 맞춰서 weight 과 bias 값들을 초기화한다. 위 코드에서 입력 tensor 의 크기는 (2, 2) 이고 LazyLinear 는 output feature size 에 대해 output_feature 개수를 정수 (10) 값으로 가지고 있다가 입력 tensor 에 맞춰 (2, 10) 크기의 weight 을 동적으로 초기화한다.
 
 한번 초기화된 LazyLinear 레이어는 고정된 weight size 를 가지며 따라서 다음 코드는 런타임 에러를 발생시킨다.
 
