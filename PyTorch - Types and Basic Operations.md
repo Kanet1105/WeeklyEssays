@@ -8,7 +8,6 @@
 
 **Note : All references are cited within relevant paragraphs to make it more readily accessible for viewers.**
 
-
 ## 1. Difference Between torch.tensor vs. torch.Tensor
 
 공식 문서의 내용을 Paraphrase 하자면 다음과 같다.
