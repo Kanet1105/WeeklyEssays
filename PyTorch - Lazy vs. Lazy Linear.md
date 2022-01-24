@@ -10,7 +10,7 @@ Linear 모듈의 경우 input 과 output 의 사이즈를 미리 알고 있는 �
       
       
     X = torch.Tensor([[1, 2], 
-					 [3, 4]])  
+		      [3, 4]])  
       
     lazy_linear = nn.LazyLinear(10)  
     print(lazy_linear.weight)  
@@ -55,7 +55,7 @@ LazyLinear 레이어의 weight, bias 값들은 입력값이 없는 상태에서�
 
 
     Y = torch.Tensor([[1, 2, 3], 
-				     [4, 5, 6]])  
+		      [4, 5, 6]])  
       
     output2 = lazy_linear(Y)  
     print(output2)
