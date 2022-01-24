@@ -1,12 +1,12 @@
 # Pytorch - Linear vs. Lazy Linear
 
-*Dependencies required to replicate the results for code written in the post :*
+**Dependencies required to replicate the results for code written in the post :**
 
 - Python 3.9.6 (64 bit)
 - NumPy 1.22.1
 - PyTorch 1.10.1
 
-*Note : All references are cited within relevant paragraphs to make it more readily accessible for viewers.*
+**Note : All references are cited within relevant paragraphs to make it more readily accessible for viewers.**
 
 ## Linear vs. Lazy Linear
 Linear 모듈의 경우 input 과 output 의 사이즈를 미리 알고 있는 상태에서 weight 값들을 초기화시키는 반면 LazyLinear 모듈은 그렇지 않다. 다음 코드를 실행시켜 LazyLinear 의 동작에 대해 이해할 수 있다.
