@@ -160,37 +160,3 @@ array[0] 의 값을 5.0 으로 바꿔도 tensor[0] 의 값이 바뀌지 않는�
 > 
 > View 와 Reshape
 > https://inmoonlight.github.io/2021/03/03/PyTorch-view-transpose-reshape/
-
-
-## 3. Basic Operation
-
-기본 사칙연산 함수들은 다음과 같으며 모두 element-wise operation 이다.
-
- - torch.add()
- - torch.sub()
- - torch.mul()
- - torch.div()
-
-#### element-wise operations
-
-    A = torch.Tensor([3])  
-    B = torch.Tensor([7])  
-    C = torch.Tensor([2])  
-    D = torch.Tensor([5])  
-    E = torch.Tensor([10])  
-      
-    output = (A + B) * 2 - 5 / 10  
-    print(output)  
-      
-    addition = torch.add(A, B)  
-    multiplication = torch.mul(addition, C)  
-    division = torch.div(D, E)  
-    subtraction = torch.sub(multiplication, division)  
-    print(subtraction)
-
-#### results
-
-    tensor([19.5000])
-    tensor([19.5000])
-
-사실상 연산자를 이용한 계산과 차이는 없고 오히려 계산 프로세스가 functional 해지고 코드가 길어졌다. 아마도 연산자를 사용해서 값을 계산하다 보면 사용자가 고려하지 못한 이슈들에 대해서 런타임에서 문제가 발생할 여지가 있는데 이를 functional 하게 처리함으로서 코드 길이와 안전성의 trade-off 가 생긴 것 같다.
