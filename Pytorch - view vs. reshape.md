@@ -36,10 +36,13 @@ view 는 원본 텐서의 모양을 변경시켜주는 함수이다. 하지만 v
 
     A = torch.arange(1, 10)
     B = A.view(3, 3)
+    
     A[0].fill_(55)
     B[2][2].fill_(33)
+    
     print(A)
     print(B)
+    
     print(A.is_contiguous())
     print(B.is_contiguous())
     ---------------------------------------------------------------------------
@@ -83,6 +86,7 @@ view 는 원본 텐서의 모양을 변경시켜주는 함수이다. 하지만 v
     A = torch.arange(1, 10)
     B = A.view(3, 3)
     C = B.t()    # torch.transpose()
+    
     print(A.is_contiguous())
     print(B.is_contiguous())
     print(C.is_contiguous())
