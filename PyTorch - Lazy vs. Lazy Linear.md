@@ -13,23 +13,25 @@ Linear 모듈의 경우 input 과 output 의 사이즈를 미리 알고 있는 �
 
 #### nn.LazyLinear()
 
-    import torch  
-    from torch import nn  
-      
-      
-    X = torch.Tensor([[1, 2], [3, 4]])  
-      
-    lazy_linear = nn.LazyLinear(10)  
-    print(lazy_linear.weight)  
-    print(lazy_linear.bias)  
-    print("=" * 50)  
-      
-    output1 = lazy_linear(X)  
-    print(output1, output1.size())  
-    print("=" * 50)  
-      
-    print(lazy_linear.weight, lazy_linear.weight.size())  
-    print(lazy_linear.bias, lazy_linear.bias.size())
+```python
+import torch  
+from torch import nn  
+
+
+X = torch.Tensor([[1, 2], [3, 4]])  
+
+lazy_linear = nn.LazyLinear(10)  
+print(lazy_linear.weight)  
+print(lazy_linear.bias)  
+print("=" * 50)  
+
+output1 = lazy_linear(X)  
+print(output1, output1.size())  
+print("=" * 50)  
+
+print(lazy_linear.weight, lazy_linear.weight.size())  
+print(lazy_linear.bias, lazy_linear.bias.size())
+```
 
 #### results
 
