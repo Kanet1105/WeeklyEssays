@@ -33,7 +33,7 @@ print(lazy_linear.weight, lazy_linear.weight.size())
 print(lazy_linear.bias, lazy_linear.bias.size())
 ```
 
-```python
+```
 <UninitializedParameter>
 <UninitializedParameter>
 ==================================================
