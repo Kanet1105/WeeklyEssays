@@ -158,14 +158,19 @@ tensor([5., 2., 3., 4.]) tensor([1., 2., 3., 4.])
 
 #### shares the same memory space between two tensors
 
-    array = np.array([1, 2, 3, 4], dtype=np.float32)  
-    tensor1 = torch.tensor(array)  
-    tensor2 = tensor1.detach()  
-      
-    tensor1[0] = 5.0  
-    print(tensor1, tensor2)
-    ---------------------------------------------------------------------------
-    tensor([5., 2., 3., 4.]) tensor([5., 2., 3., 4.])
+```python
+array = np.array([1, 2, 3, 4], dtype=np.float32)  
+tensor1 = torch.tensor(array)  
+tensor2 = tensor1.detach()  
+
+tensor1[0] = 5.0  
+print(tensor1, tensor2)
+```
+
+```
+---------------------------------------------------------------------------
+tensor([5., 2., 3., 4.]) tensor([5., 2., 3., 4.])
+```
 
 *clone() 과 detach() 는 leaf variable 과 연관이 있으므로 이에 대해서 추후에 다루도록 하자.*
 
