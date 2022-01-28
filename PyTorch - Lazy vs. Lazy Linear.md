@@ -33,6 +33,7 @@ print(lazy_linear.weight, lazy_linear.weight.size())
 print(lazy_linear.bias, lazy_linear.bias.size())
 ```
 
+#### results
 ```
 <UninitializedParameter>
 <UninitializedParameter>
@@ -62,14 +63,18 @@ LazyLinear 레이어의 weight, bias 값들은 입력값이 없는 상태에서�
 
 한번 초기화된 LazyLinear 레이어는 고정된 weight size 를 가지며 따라서 다음 코드는 런타임 에러를 발생시킨다.
 
+```python
+Y = torch.Tensor([[1, 2, 3], [4, 5, 6]])  
 
-    Y = torch.Tensor([[1, 2, 3], [4, 5, 6]])  
-      
-    output2 = lazy_linear(Y)  
-    print(output2)
+output2 = lazy_linear(Y)  
+print(output2)
+```
 
 #### results
-    RuntimeError: mat1 and mat2 shapes cannot be multiplied (2x3 and 2x10)
+
+```
+RuntimeError: mat1 and mat2 shapes cannot be multiplied (2x3 and 2x10)
+```
 
 이렇듯 LazyLinear 는 weight 과 bias 를 런타임에 동적으로 초기화시키는 모듈이며 한번 초기화되면 이후 고정된 weight size 를 가지는 것을 알 수 있다.
 
