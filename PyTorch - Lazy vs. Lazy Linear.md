@@ -79,7 +79,9 @@ RuntimeError: mat1 and mat2 shapes cannot be multiplied (2x3 and 2x10)
 이렇듯 LazyLinear 는 weight 과 bias 를 런타임에 동적으로 초기화시키는 모듈이며 한번 초기화되면 이후 고정된 weight size 를 가지는 것을 알 수 있다.
 
 > nn.LazyLinear
+> 
 > https://pytorch.org/docs/stable/generated/torch.nn.modules.lazy.LazyModuleMixin.html
 > 
 > nn.Linear
+> 
 > https://pytorch.org/docs/stable/generated/torch.nn.Linear.html#torch.nn.Linear
