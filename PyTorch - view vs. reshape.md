@@ -190,6 +190,7 @@ tensor([[ 1,  4,  7,  2,  5,  8,  3,  6, 99]])
 Trade-off 가 있다고 생각한다. view() 를 사용해서 메모리를 절약하고 runtime 에서 발생하는 error 처리를 따로 해주느냐 아니면 메모리 누수를 최소화하는 코드를 짤 자신이 있다면 reshape() 을 사용하는 것이 바람직하지 않을까 싶다. 개인적으로 정말 바람직한 방법이라고 생각하는 것이 있다면 PyTorch 의 non-contiguous 한 연산 결과를 반환하는 함수들을 다 정리한 다음 상황에 맞춰서 view() 와 reshape() 을 번갈아 가면서 쓰는 것이 가장 좋다고 본다.
 
 > 공식 문서
+> 
 > https://pytorch.org/docs/stable/generated/torch.Tensor.view.html?highlight=torch%20view#torch.Tensor.view
 > 
 > contiguous array 에 대한 설명
