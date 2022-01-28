@@ -46,11 +46,16 @@ tensor([1., 2., 3.]) torch.float32
 
 #### torch.tensor()
 
-    # torch.tensor 는 data 인자를 넣어야 함
-    tensor = torch.tensor([1, 2, 3])
-    print(tensor, tensor.dtype)
-	---------------------------------------------------------------------------
-    tensor([1, 2, 3]) torch.int64
+```python
+# torch.tensor 는 data 인자를 넣어야 함
+tensor = torch.tensor([1, 2, 3])
+print(tensor, tensor.dtype)
+```
+
+```
+---------------------------------------------------------------------------
+tensor([1, 2, 3]) torch.int64
+```
 
 ## 2. Caveats
 
@@ -59,37 +64,47 @@ tensor([1., 2., 3.]) torch.float32
 
 #### copy data
 
-    def get_address(variable):
-	    print(variable, hex(id(variable)))
+```python
+def get_address(variable):
+    print(variable, hex(id(variable)))
 
-    array = np.array([1, 2, 3, 4], dtype=np.float32)  
-    tensor = torch.tensor(array)  
-      
-    array[0] = 5.0  
-    print(array)  
-    print(tensor)
-	---------------------------------------------------------------------------
-    [5. 2. 3. 4.]
-    tensor([1., 2., 3., 4.])
+array = np.array([1, 2, 3, 4], dtype=np.float32)  
+tensor = torch.tensor(array)  
+
+array[0] = 5.0  
+print(array)  
+print(tensor)
+```
+
+```
+---------------------------------------------------------------------------
+[5. 2. 3. 4.]
+tensor([1., 2., 3., 4.])
+```
 
 array[0] 의 값을 5.0 으로 바꿔도 tensor[0] 의 값이 바뀌지 않는다. 같은 주소를 참조하고 있지만 신기하게도 아래 코드를 실행시켜보면 주소값이 다르게 나오는 것을 확인할 수 있다.
 
 #### memory address
 
-    def get_address(variable):  
-        return hex(id(variable))  
-      
-      
-    array = np.array([1, 2, 3, 4], dtype=np.float32)  
-    tensor = torch.as_tensor(array)  
-      
-    address_a0 = get_address(array[0])  
-    address_t0 = get_address(tensor[0])  
-    print(address_a0) 
-    print(address_t0)
-	---------------------------------------------------------------------------
-    0x25060b42b70
-    0x250607de720
+```python
+def get_address(variable):  
+return hex(id(variable))  
+
+
+array = np.array([1, 2, 3, 4], dtype=np.float32)  
+tensor = torch.as_tensor(array)  
+
+address_a0 = get_address(array[0])  
+address_t0 = get_address(tensor[0])  
+print(address_a0) 
+print(address_t0)
+```
+
+```
+---------------------------------------------------------------------------
+0x25060b42b70
+0x250607de720
+```
 
 개인적인 생각으로는 연산 효율을 높이기 위해 contiguous 한 메모리 구조를 만들기 위해서 array 변수의 각 인덱스가 가리키는 주소값을 연속적으로 저장한 주소의 값을 value 자체가 가진 주소 대신 반환하기 때문에 그런 것 같다. 아래와 같이
 
@@ -104,15 +119,20 @@ array[0] 의 값을 5.0 으로 바꿔도 tensor[0] 의 값이 바뀌지 않는�
 
 #### torch.as_tensor()
 
-    array = np.array([1, 2, 3, 4], dtype=np.float32)  
-    tensor = torch.as_tensor(array)  
-      
-    array[0] = 5.0  
-    print(array)  
-    print(tensor)
-	---------------------------------------------------------------------------
-    [5. 2. 3. 4.]
-    tensor([5., 2., 3., 4.])
+```python
+array = np.array([1, 2, 3, 4], dtype=np.float32)  
+tensor = torch.as_tensor(array)  
+
+array[0] = 5.0  
+print(array)  
+print(tensor)
+```
+
+```
+---------------------------------------------------------------------------
+[5. 2. 3. 4.]
+tensor([5., 2., 3., 4.])
+```
 
 같은 메모리 주소를 참조한다.
 
@@ -120,14 +140,19 @@ array[0] 의 값을 5.0 으로 바꿔도 tensor[0] 의 값이 바뀌지 않는�
 
 #### copy a tensor as an input to another tensor
 
-    array = np.array([1, 2, 3, 4], dtype=np.float32)  
-    tensor1 = torch.tensor(array)  
-    tensor2 = tensor1.clone()  
-      
-    tensor1[0] = 5.0  
-    print(tensor1, tensor2)
-	---------------------------------------------------------------------------
-    tensor([5., 2., 3., 4.]) tensor([1., 2., 3., 4.])
+```python
+array = np.array([1, 2, 3, 4], dtype=np.float32)  
+tensor1 = torch.tensor(array)  
+tensor2 = tensor1.clone()  
+
+tensor1[0] = 5.0  
+print(tensor1, tensor2)
+```
+
+```
+---------------------------------------------------------------------------
+tensor([5., 2., 3., 4.]) tensor([1., 2., 3., 4.])
+```
 
 ---
 
