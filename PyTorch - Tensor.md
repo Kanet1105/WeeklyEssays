@@ -31,6 +31,7 @@ print(tensor1, tensor1.dtype)
 # torch.float32 로 자동 캐스팅
 tensor2 = torch.Tensor([1, 2, 3])
 print(tensor2, tensor2.dtype)
+
 ---------------------------------------------------------------------------
 tensor([]) torch.float32
 tensor([1., 2., 3.]) torch.float32
