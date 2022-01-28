@@ -20,22 +20,24 @@ torch.tensor의 경우 data 인자를 반드시 필요로 하는 데 비해 torc
 
 #### torch.Tensor()
 
-    import numpy as np
-    import torch
+```python
+import numpy as np
+import torch
 
-	# Tensor 는 dtype 을 따로 지정해주지 않는다면 torch.float32 의 Tensor object를 반환
-    tensor1 = torch.Tensor()
-    print(tensor1, tensor1.dtype)
-    
-    # torch.float32 로 자동 캐스팅
-    tensor2 = torch.Tensor([1, 2, 3])
-    print(tensor2, tensor2.dtype)
-	---------------------------------------------------------------------------
-    tensor([]) torch.float32
-    tensor([1., 2., 3.]) torch.float32
+# Tensor 는 dtype 을 따로 지정해주지 않는다면 torch.float32 의 Tensor object를 반환
+tensor1 = torch.Tensor()
+print(tensor1, tensor1.dtype)
+
+# torch.float32 로 자동 캐스팅
+tensor2 = torch.Tensor([1, 2, 3])
+print(tensor2, tensor2.dtype)
+---------------------------------------------------------------------------
+tensor([]) torch.float32
+tensor([1., 2., 3.]) torch.float32
     
 > PyTorch 의 데이터 타입
 > https://pytorch.org/docs/stable/tensors.html?highlight=torch%20tensor#torch.Tensor
+```
 
 ---
 
