@@ -193,4 +193,5 @@ Trade-off 가 있다고 생각한다. view() 를 사용해서 메모리를 절�
 > https://pytorch.org/docs/stable/generated/torch.Tensor.view.html?highlight=torch%20view#torch.Tensor.view
 > 
 > contiguous array 에 대한 설명
+> 
 > https://stackoverflow.com/questions/26998223/what-is-the-difference-between-contiguous-and-non-contiguous-arrays/26999092#26999092
