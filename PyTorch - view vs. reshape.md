@@ -44,44 +44,56 @@ tensor([[1, 2, 3],
 
 위와 같은 결과를 얻을 수 있고 B 텐서 객체는 A 를 참초하므로 아래의 코드와 같이 A 와 B 에서 어떤 값을 수정해도 같이 변하게 된다. 
 
-    A = torch.arange(1, 10)
-    B = A.view(3, 3)
-    
-    A[0].fill_(55)
-    B[2][2].fill_(33)
-    
-    print(A)
-    print(B)
-    
-    print(A.is_contiguous())
-    print(B.is_contiguous())
-    ---------------------------------------------------------------------------
-    tensor([55,  2,  3,  4,  5,  6,  7,  8, 33])
-    tensor([[55,  2,  3],
-            [ 4,  5,  6],
-            [ 7,  8, 33]])
-    True
-    True
+```python
+A = torch.arange(1, 10)
+B = A.view(3, 3)
+
+A[0].fill_(55)
+B[2][2].fill_(33)
+
+print(A)
+print(B)
+
+print(A.is_contiguous())
+print(B.is_contiguous())
+```
+
+```
+---------------------------------------------------------------------------
+tensor([55,  2,  3,  4,  5,  6,  7,  8, 33])
+tensor([[55,  2,  3],
+    [ 4,  5,  6],
+    [ 7,  8, 33]])
+True
+True
+```
     
 
 하지만 PyTorch 는 메모리의 위치를 바꾸게 되는 (non-contiguous) 연산을 하게 되는 경우가 있다. torch.swapdim 의 자매품인 torch.transpose() 가 그런 경우인데 다음과 같은 경우는 view() 를 사용할 수 없게 된다.
 
-    A = torch.arange(1, 10)
-    B = A.view(3, 3)
-    C = B.t()    # torch.transpose()
-    D = C.view(9, 1)
-    ---------------------------------------------------------------------------    
-    RuntimeError                              Traceback (most recent call last)
-    Input In [31], in <module>
-     2 B = A.view(3, 3)
-     3 C = B.t()
-    ----> 4 D = C.view(9,  1)
+```python
+A = torch.arange(1, 10)
+B = A.view(3, 3)
+C = B.t()    # torch.transpose()
+D = C.view(9, 1)
+```
+
+```
+---------------------------------------------------------------------------    
+RuntimeError                              Traceback (most recent call last)
+Input In [31], in <module>
+2 B = A.view(3, 3)
+3 C = B.t()
+----> 4 D = C.view(9,  1)
     
     RuntimeError: view size is not compatible with input tensor's size and stride (at least one dimension spans across two contiguous subspaces). Use .reshape(...) instead.
+```
 
 위와 같이 런타임에러가 발생하며 reshape() 을 쓰라고 권한다. view 는 반환하는 참조 텐서에 대해서 메모리 구조를 contiguous 하게 유지하고 모양만 바꿔주기 때문에
 
-    B = A.view(3, 3)
+```python
+B = A.view(3, 3)
+```
 
 를 하더라도 아래와 같이 A 를 참조하는 B Tensor 객체의 메모리는 contiguous 하게 유지된다.
 
@@ -89,71 +101,88 @@ tensor([[1, 2, 3],
 
 반면에 A 를 참조하는 B 객체에 대해 transpose() 같은 non-contiguous 연산을 적용하게 되면 C Tensor 는 다음과 같이 non-contiguous 해지기 때문에 C 에 대해서 view() 함수를 사용할 수 없게 된다.
 
-	C = B.t()    # torch.transpose()
+```python
+C = B.t()    # torch.transpose()
+```
 
 ![enter image description here](https://github.com/Kanet1105/WeeklyEssays/blob/main/images/contiguity_03.png)
-	
-    A = torch.arange(1, 10)
-    B = A.view(3, 3)
-    C = B.t()    # torch.transpose()
-    
-    print(A.is_contiguous())
-    print(B.is_contiguous())
-    print(C.is_contiguous())
-    ---------------------------------------------------------------------------
-    True
-    True
-	False
+
+```python
+A = torch.arange(1, 10)
+B = A.view(3, 3)
+C = B.t()    # torch.transpose()
+
+print(A.is_contiguous())
+print(B.is_contiguous())
+print(C.is_contiguous())
+```
+
+```
+---------------------------------------------------------------------------
+True
+True
+False
+```
 
 C = 는 contiguous 하진 않지만 A, B, C 모두 같은 값을 참조하기 때문에 어떻게 결과를 바꿔도 A, B, C 모두에게 적용되는 것을 볼 수 있다.
 
-	A = torch.arange(1, 10)
-	B = A.view(3, 3)
-	C = B.t()    # torch.transpose()
+```python
+A = torch.arange(1, 10)
+B = A.view(3, 3)
+C = B.t()    # torch.transpose()
 
-	A[0].fill_(11)
-	B[1, 0].fill_(22)
-	C[0, 2].fill_(33)
+A[0].fill_(11)
+B[1, 0].fill_(22)
+C[0, 2].fill_(33)
 
-	print(A)
-	print(B)
-	print(C)
-	---------------------------------------------------------------------------
-	tensor([11,  2,  3, 22,  5,  6, 33,  8,  9])
-	tensor([[11,  2,  3],
-	        [22,  5,  6],
-	        [33,  8,  9]])
-	tensor([[11, 22, 33],
-	        [ 2,  5,  8],
-	        [ 3,  6,  9]])
+print(A)
+print(B)
+print(C)
+```
+
+```
+---------------------------------------------------------------------------
+tensor([11,  2,  3, 22,  5,  6, 33,  8,  9])
+tensor([[11,  2,  3],
+	[22,  5,  6],
+	[33,  8,  9]])
+tensor([[11, 22, 33],
+	[ 2,  5,  8],
+	[ 3,  6,  9]])
+```
 
 ## torch.reshape()
 
 view 함수가 반드시 contiguous 한 텐서 객체에 대해서만 적용되는 반면 reshape() 은 그렇지 않다. 위에서 view() 를 적용했을 때 에러가 나는 부분을 인터프리터의 조언에 따라 reshape() 으로 바꾸면 잘 실행되는 것을 알 수 있다. 하지만 reshape() 은 더이상 참조를 하지 않고 원래 배열을 복사해서 D 에 할당하기 때문에 A, B, C 와 D 는 서로 다른 곳을 참조한다. 
 
-	A = torch.arange(1, 10)
-	B = A.view(3, 3)
-	C = B.t()    # torch.transpose()
-	D = C.reshape(1, 9)
+```python
+A = torch.arange(1, 10)
+B = A.view(3, 3)
+C = B.t()    # torch.transpose()
+D = C.reshape(1, 9)
 
-	A[0].fill_(11)
-	B[1, 0].fill_(22)
-	C[0, 2].fill_(33)
-	D[0, -1].fill_(99)
+A[0].fill_(11)
+B[1, 0].fill_(22)
+C[0, 2].fill_(33)
+D[0, -1].fill_(99)
 
-	print(A)
-	print(B)
-	print(C)
-	print(D)
-	---------------------------------------------------------------------------
-	tensor([11,  2,  3, 22,  5,  6, 33,  8,  9])
-	tensor([[11,  2,  3],
-	        [22,  5,  6],
-	        [33,  8,  9]])
-	tensor([[11, 22, 33],
-	        [ 2,  5,  8],
-	        [ 3,  6,  9]])
-	tensor([[ 1,  4,  7,  2,  5,  8,  3,  6, 99]])
+print(A)
+print(B)
+print(C)
+print(D)
+```
+
+```
+---------------------------------------------------------------------------
+tensor([11,  2,  3, 22,  5,  6, 33,  8,  9])
+tensor([[11,  2,  3],
+	[22,  5,  6],
+	[33,  8,  9]])
+tensor([[11, 22, 33],
+	[ 2,  5,  8],
+	[ 3,  6,  9]])
+tensor([[ 1,  4,  7,  2,  5,  8,  3,  6, 99]])
+```
 
 이렇게 D Tensor 는 A, B, C 와는 별개의 Tensor 객체가 됐다. Pytorch 의 기본적인 연산 단위는 Tensor 객체이고 Tensor 의 계산을 할 때에 프레임워크에서 제공하는 모듈들을 사용하게 되는데 이럴 때 가장 중요한 것이 바로 연산의 결과가 contiguous 함을 보장하느냐인 것을 알 수 있었다. 
 
