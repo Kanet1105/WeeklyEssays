@@ -12,7 +12,7 @@
 
 view 는 원본 텐서의 모양을 변경시켜주는 함수이다. 하지만 view를 쓰기 위해선 먼저 메모리가 contiguous 하다는 개념이 중요하다. Tensor 객체는 Contiguous 한 메모리를 갖는데 PyTorch 에서의 contiguous 한 메모리는 반드시 **행 메모리** 이다. 
 
-만약 `A = torch.arange(1, 10)` 를 실행하면 다음과 같은 Tensor 객체를 생성하게 된다.
+만약 `A = torch.arange(1, 10)`python 를 실행하면 다음과 같은 Tensor 객체를 생성하게 된다.
 
 ![enter image description here](https://github.com/Kanet1105/WeeklyEssays/blob/main/images/contiguity_01.png)
 
