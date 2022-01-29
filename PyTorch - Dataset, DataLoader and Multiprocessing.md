@@ -14,8 +14,10 @@ PyTorch 는 아래 2가지 타입의 데이터셋을 지원한다.
  - map-style :  `__getitem__()` 과 `__len__()` 함수를 구현하는 Dataset
  - iterable-style : `__iter__()` 를 구현하며 dataset 의 sample 에 대한 iterator 를 반환하는 Dataset (서버나 db로부터 데이터를 byte-stream 으로 받아올 때 사용)
 
-> 공식 문서
+> map-style-dataset
 > https://pytorch.org/docs/stable/data.html?highlight=torch%20utils%20data#map-style-datasets
+> 
+> iterable-style-dataset
 > https://pytorch.org/docs/stable/data.html#torch.utils.data.IterableDataset
 
 
