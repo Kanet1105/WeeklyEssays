@@ -15,7 +15,6 @@ PyTorch 는 아래 2가지 타입의 데이터셋을 지원한다.
  - iterable-style : `__iter__()` 를 구현하며 dataset 의 sample 에 대한 iterator 를 반환하는 Dataset (서버나 db로부터 데이터를 byte-stream 으로 받아올 때 사용)
 
 > 공식 문서
-> 
 > https://pytorch.org/docs/stable/data.html?highlight=torch%20utils%20data#map-style-datasets
 > https://pytorch.org/docs/stable/data.html#torch.utils.data.IterableDataset
 
@@ -47,7 +46,7 @@ class CustomDataset(Dataset):
 `__getitem__` 을 구현하는 Iterable 객체이므로 다음과 같이 for() 나 map() 안에서 사용할 수 있다.
 
 > Iterator, Iterable, Iteration 에 관해서
-https://stackoverflow.com/questions/9884132/what-exactly-are-iterator-iterable-and-iteration
+> https://stackoverflow.com/questions/9884132/what-exactly-are-iterator-iterable-and-iteration
 
 ```python
 class CustomDataset(Dataset):
@@ -215,5 +214,4 @@ for i in my_dataloader:
 5
 ```
 > Sending a class method over a multiprocessing.Queue
-> 
 > https://stackoverflow.com/questions/44185770/call-multiprocessing-in-class-method-python
